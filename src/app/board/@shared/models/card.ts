@@ -1,4 +1,5 @@
 export interface Card {
-  _id: string;
+  _id: number;
   title: string;
+  columnId: number;
 }
