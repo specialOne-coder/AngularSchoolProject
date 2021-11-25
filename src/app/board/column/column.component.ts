@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {COLUMNS} from '../@shared/mock/column.mock';
+import { Column } from '../@shared/models';
 
 @Component({
   selector: 'app-column',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ColumnComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  
+
 
 }

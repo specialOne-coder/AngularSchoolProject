@@ -1,5 +1,6 @@
 export interface Column {
-  _id: number;
-  title: string;
-  position: number;
+  _id: string;
+  titreColumn: string;
+  positionColumn: number;
+  textColumn:string
 }

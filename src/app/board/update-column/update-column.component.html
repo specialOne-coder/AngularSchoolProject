@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Modifier votre colonne</h1>
+<div mat-dialog-content>
+    <form class="form-control" [formGroup]="columnUpdateForm" (ngSubmit)="updateColumn()">
+        <div class="row">
+          <div class="col">
+            <div class="hide-md-lg">
+              <p></p>
+            </div>
+            <input type="text" class="form-control" name="titre" placeholder="Titre" formControlName="titreColumn" required> <br>
+            <input type="number" class="form-control" name="position" placeholder="Position" formControlName="positionColumn" required><br>
+            <input type="text" class="form-control" name="titre" placeholder="Texte" formControlName="textColumn" required><br>
+            <input type="submit" class="btn btn-warning" value="Modifier">
+          </div>
+    
+        </div>
+      </form>
+</div>

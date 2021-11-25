@@ -3,8 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
 };
+
+export const apiUrl = 'https://crudcrud.com/api/2e6cba34a9764180b6ac4c82ed82a887';
+                       
 
 /*
  * For easier debugging in development mode, you can import the following file
