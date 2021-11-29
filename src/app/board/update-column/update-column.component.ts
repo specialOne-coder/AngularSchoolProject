@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Column } from '../@shared/models';
+import { tap } from 'rxjs/operators';
 import { BoardService } from '../@shared/services/board.service';
 
 @Component({
@@ -36,14 +37,13 @@ export class UpdateColumnComponent implements OnInit {
 
   // Mise à jour de la colonne
   updateColumn() {
-    var id = this.data.rep._id;
+    const id = this.data.rep._id;
     if (this.columnUpdateForm.valid) {
-      this.boardService.updateColumn(id, this.columnUpdateForm.value).subscribe(response => {
-        console.log("Update successfull: " + response);
-        this.dialogRef.close(response);
-      }, error => {
-        console.log(error);
-      })
+      this.boardService.updateColumn(id, this.columnUpdateForm.value).pipe(
+        tap(() => {
+        this.dialogRef.close(<Column>{ ...this.columnUpdateForm.value, _id: id });
+        })
+      ).subscribe()
     }
   }
 

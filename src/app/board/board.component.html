@@ -4,25 +4,12 @@
     <p>Un petit clone de l'application Trello!</p>
     <a routerLink="/add-column"><button type="button" class="btn btn-dark">add-column</button></a>
     <a routerLink="/add-card"><button type="button" class="btn btn-danger">add-card</button></a>
-    
+
 </div>
 <div class="container mt-5">
     <div class="row">
-        <div class="col-sm-4" *ngFor="let item of columns">
-            <!-- //TODO déplacer mise en forme de la colonne dans app-column -->
-            <!-- <app-column *ngFor="let item of columns"></app-column> -->
-            <div class="container mt-3">
-                <div class="card" style="width:300px">
-                    <div class="card-body">
-                        <h4 class="card-title"> {{item.titreColumn}}</h4>
-                        <p class="card-text">{{item.textColumn}}
-                        </p>
-                        <button type="button" mat-button (click)="openDialog(item._id)" class="btn btn-warning"><i class="fa fa-edit"></i></button>
-                        <button type="button" (click)="deleteColumn(item._id)" class="btn btn-danger"><i class="fa fa-trash"></i></button> <br><br>
-                        <a href="#" class="btn btn-primary">card</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <app-column [column]="column" *ngFor="let column of columns" (onColumnUpdated)="columnUpdated($event)">
+        </app-column>
     </div>
-    ​
+</div>
+​

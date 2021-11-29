@@ -15,50 +15,31 @@ export class BoardComponent implements OnInit {
 
   columns!: Column[];
   constructor(private boardService: BoardService, public dialog: MatDialog) { }
+  
 
-  // Modal
-  openDialog(id: string) {
-    console.log("Mon id : " + id);
-    this.boardService.getColumn(id).subscribe(response => {
-      const dialogRef = this.dialog.open(UpdateColumnComponent, { data: { rep: response } }); // Injection de données par modal
-      console.log(response);
-      dialogRef.afterClosed().subscribe(columnUpated => {
-        const columnIndex = this.columns.findIndex(c => c._id == columnUpated._id);
-        if(columnIndex != -1) {
-          this.columns[columnIndex] = columnUpated;
+  ngOnInit(): void {
+    this.getColumns();
+  }
+
+  columnUpdated(column: Column) {
+    console.log('this.columns > ', this.columns)
+    console.log('column > ', column)
+    const columnIndex = this.columns.findIndex(c => c._id == column?._id);
+        console.log('columnIndex > ', columnIndex)
+        if (columnIndex != -1) {
+          this.columns[columnIndex] = column;
+          console.log('this.columns > ', this.columns)
         }
-      })
-    }, error => {
-      console.log(error);
-    })
-
-
   }
 
   // Recuperation des colonnes
-  getColumns() {
+  private getColumns() {
     this.boardService.getColumns().subscribe(response => {
       this.columns = response;
       console.log(response);
     }, error => {
       console.log(error);
     })
-  }
-
-  // Suppression de la colonne
-  deleteColumn(id: string) {
-    this.boardService.deleteColumn(id).subscribe(response => {
-      this.ngOnInit();
-      console.log(response);
-    }, error => {
-      console.log(error);
-
-    })
-  }
-
-
-  ngOnInit(): void {
-    this.getColumns();
   }
 
 }
