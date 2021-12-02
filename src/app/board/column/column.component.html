@@ -2,18 +2,21 @@
         <div class="container mt-3">
             <div class="card" style="width:300px">
                 <div class="card-body">
-                    <h4 class="card-title"> {{column.titreColumn}}</h4>
-                    <p class="card-text">{{column.textColumn}}
-                    </p>
-                    <button type="button" mat-button (click)="openDialog(column._id)" class="btn btn-warning"><i
+                    <h2 class="card-title"> {{column.titreColumn}}
+                        <button type="button" mat-button (click)="openDialog(column._id)" class="btn btn-warning"><i
                             class="fa fa-edit"></i></button>
                     <button type="button" (click)="deleteColumn(column._id)" class="btn btn-danger"><i
-                            class="fa fa-trash"></i></button> <br><br>
-                    <a href="#" class="btn btn-primary">card</a>
+                            class="fa fa-trash"></i></button> <button type="button" (click)="openCardDialog(column._id)" class="btn btn-dark"><i
+                                class="fa fa-plus-square"></i></button><br>
+                    </h2>
+                    <p class="card-text">{{column.textColumn}}
+                        
+                    </p>
+                    <app-card [card]="card" *ngFor="let card of cards" ></app-card> 
                 </div>
             </div>
         </div>
     </div>
 
-    <app-card></app-card>
-    <app-add-card></app-add-card>
+    <!--<app-card></app-card> 
+    <app-add-card></app-add-card>-->

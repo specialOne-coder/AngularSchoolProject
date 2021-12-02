@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BoardModule } from './board/board.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 @NgModule({
   declarations: [
     AppComponent

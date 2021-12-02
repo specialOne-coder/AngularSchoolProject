@@ -16,7 +16,7 @@ import { AddCardModule } from './add-card/add-card.module';
     CommonModule,
     CardModule,
     AddCardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class ColumnModule { }

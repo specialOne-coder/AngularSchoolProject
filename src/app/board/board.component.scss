@@ -4,3 +4,15 @@
 .btn-danger{
     margin-left: 10px;
 }
+
+.container-fluid{
+    background-image: url('../../assets/pic.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.container-fluid h1{
+    font-weight:bold ;
+    font-size: 30px;
+}

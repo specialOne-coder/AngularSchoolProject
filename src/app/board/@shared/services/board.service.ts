@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { apiUrl } from 'src/environments/environment';
-import { Column } from '../models';
+import { Card, Column } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +34,31 @@ export class BoardService {
   //Suppression d'une colonne donnée
   deleteColumn(id: string): Observable<Column> {
     return this.http.delete<Column>(`${apiUrl}/columns/` + id);
+  }
+
+  //Création du card 
+  addCard(data: Card): Observable<Card[]> {
+    return this.http.post<Card[]>(`${apiUrl}/card`, data);
+  }
+
+  // Récupération des cards
+  getCards(): Observable<Card[]> {
+    return this.http.get<Card[]>(`${apiUrl}/card`);
+  }
+
+  // Récupération d'une card donnée
+  getCard(id: string): Observable<Card> {
+    return this.http.get<Card>(`${apiUrl}/card/` + id);
+  }
+
+  // Mise à jour d'une card donnée
+  updateCard(id: string, data: Card): Observable<Card> {
+    return this.http.put<Card>(`${apiUrl}/card/` + id, data);
+  }
+  
+  //Suppression d'une cards donnée
+  deleteCard(id: string): Observable<Card> {
+    return this.http.delete<Card>(`${apiUrl}/card/` + id);
   }
 
 

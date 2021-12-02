@@ -1,3 +1,13 @@
-.btn-warning{
+:host {
+    width: 300px;
+    margin: 0 5px;
+}
+
+.btn-warning {
     margin-right: 10px;
 }
+
+.btn-dark{
+    margin-left: 10px;
+}
+

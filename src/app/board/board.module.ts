@@ -7,6 +7,7 @@ import { AddColumnModule } from './add-column/add-column.module';
 import { RouterModule } from '@angular/router';
 import { UpdateColumnComponent } from './update-column/update-column.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatDialogModule,
   ]
 })
 export class BoardModule { }
