@@ -2,12 +2,12 @@
 <div class="container-fluid p-5 bg-primary text-white text-center">
     <h1>My Trello</h1>
     <p>Un petit clone de l'application Trello!</p>
-    <a routerLink="/add-column"><button type="button" class="btn btn-primary">add-column</button></a>
+    <a routerLink="/add-column"><button type="button" class="btn btn-light">add-column</button></a>
 </div>
 
 <div class="container mt-5">
     <div class="row">
-        <app-column [column]="columno" *ngFor="let columno of columns" (onColumnUpdated)="columnUpdated($event)">
+        <app-column [column]="columno" *ngFor="let columno of columns" (onColumnUpdated)="columnUpdated($event)" (onColumn)="delete($event)">
         </app-column>
     </div>
 </div>

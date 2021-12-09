@@ -1,4 +1,6 @@
-
 <div class="card bg-primary text-white">
-    <div class="card-body">{{card.titreCard}}</div>
-  </div>
+    <div class="card-body">{{card.titreCard}} <button type="button" mat-button (click)="openUpdateCardDialog(card._id)" class="btn btn-primary"><i
+                class="fa fa-edit"></i></button>
+                <button type="button" (click)="deleteCard(card._id)" class="btn btn-primary"><i
+                class="fa fa-trash"></i></button></div>
+</div>

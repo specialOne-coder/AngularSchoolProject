@@ -4,10 +4,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ColumnComponent } from '../column/column.component';
 import { CardModule } from './card/card.module';
 import { AddCardModule } from './add-card/add-card.module';
+import { UpdateCardComponent } from './update-card/update-card.component';
 
 @NgModule({
   declarations: [
-    ColumnComponent
+    ColumnComponent,
+    UpdateCardComponent
   ],
   exports: [
     ColumnComponent

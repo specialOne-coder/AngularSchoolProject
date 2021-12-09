@@ -13,11 +13,13 @@ import { AddCardComponent } from './add-card/add-card.component';
 export class ColumnComponent implements OnInit {
 
   @Output() onColumnUpdated: EventEmitter<Column> = new EventEmitter();
+  @Output() onColumn: EventEmitter<Column> = new EventEmitter();
   @Output() onCard: EventEmitter<Card> = new EventEmitter();
   @Input() column!: Column;
   cards!: Card[];
+  card!: Card;
 
-  constructor(private boardService: BoardService,public dialog: MatDialog) { }
+  constructor(private boardService: BoardService, public dialog: MatDialog) { }
 
   // Modal
   openDialog(id: string) {
@@ -36,45 +38,51 @@ export class ColumnComponent implements OnInit {
   openCardDialog(id: string) {
     console.log("Mon id : " + id);
     this.boardService.getColumn(id).subscribe(response => {
-      const dialogRef = this.dialog.open(AddCardComponent,{ data: { rep: response } }); // Injection de données par modal
+      const dialogRef = this.dialog.open(AddCardComponent, { data: { rep: response } }); // Injection de données par modal
       console.log(response);
       dialogRef.afterClosed().subscribe(newCard => {
-        this.onCard.emit(newCard);
+        this.ngOnInit();
       })
     }, error => {
       console.log(error);
     })
   }
 
-
-
   // Suppression de la colonne
   deleteColumn(id: string) {
     this.boardService.deleteColumn(id).subscribe(response => {
       console.log(response);
+      this.onColumn.emit(response);
     }, error => {
       console.log(error);
+    })
+  }
+ 
+  // Recuperation des cards
+  private getCards(columnId:string) {
+    this.boardService.getCards(columnId).subscribe(response => {
+      const cardIndex = response.findIndex(r => r.columnId == this.column._id)
+      console.log("Condition > " + cardIndex);
+      if (cardIndex != -1) {
+        this.cards = response;
+      }
     })
   }
 
-  // Recuperation des cards
-  private getCards() {
-    this.boardService.getCards().subscribe(response => {
-      const cond = response.findIndex(r=>r.columnId == this.column._id)
-      console.log("Condition > " +cond);
-      
-      if(cond == 0)
-        this.cards = response;
-        console.log(response);
-    }, error => {
-      console.log(error);
-    })
-  }
+  // cardUpdated(card: Card) {
+  //   console.log('this.columns > ', this.card)
+  //   const cardIndex = this.cards.findIndex(c => c._id == card?._id);
+  //       console.log('columnIndex > ', cardIndex)
+  //       if (cardIndex != -1) {
+  //         this.cards[cardIndex] = card;
+  //         console.log('this.columns > ', this.cards)
+  //       }
+  // }
 
 
 
   ngOnInit(): void {
-    this.getCards();
+    this.getCards(this.column._id);
   }
 
 

@@ -1,5 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Card } from '../../@shared/models';
+import { BoardService } from '../../@shared/services/board.service';
+import { UpdateCardComponent } from '../update-card/update-card.component';
 
 @Component({
   selector: 'app-card',
@@ -9,9 +12,29 @@ import { Card } from '../../@shared/models';
 
 export class CardComponent implements OnInit {
 
+  @Output() onCardUpdated: EventEmitter<Card> = new EventEmitter();
   @Input() card!: Card;
 
-  constructor() { }
+  openUpdateCardDialog(id: number){
+    console.log("Mon id : " + id);
+    this.boardService.getCard(id).subscribe(response => {
+      const dialogRef = this.dialog.open(UpdateCardComponent, { data: { rep: response } }); // Injection de données par modal
+      console.log(response);
+      dialogRef.afterClosed().subscribe(columnUpated => {
+        this.onCardUpdated.emit(columnUpated);
+      })
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  constructor(private boardService:BoardService, public dialog: MatDialog) { }
+
+  deleteCard(id:number){
+    this.boardService.deleteCard(id).subscribe(rep=>{
+      console.log(rep);
+    });
+  }
 
   ngOnInit(): void {
   }

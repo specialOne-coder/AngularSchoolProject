@@ -32,6 +32,10 @@ export class BoardComponent implements OnInit {
         }
   }
 
+  delete(column:Column){
+    this.getColumns();
+  }
+
   // Recuperation des colonnes
   private getColumns() {
     this.boardService.getColumns().subscribe(response => {

@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Modifier votre card</h1>
+<div mat-dialog-content>
+    <form class="form-control" [formGroup]="cardUpdateForm" (ngSubmit)="updateCard()">
+        <div class="row">
+          <div class="col">
+            <div class="hide-md-lg">
+              <p></p>
+            </div>
+            <input type="text" class="form-control" name="titre" placeholder="Texte" formControlName="titreCard" required><br>
+            <input type="submit" class="btn btn-warning" value="Modifier">
+          </div>
+    
+        </div>
+      </form>
+</div>

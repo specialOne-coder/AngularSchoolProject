@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { filter, map, Observable, tap } from 'rxjs';
 import { apiUrl } from 'src/environments/environment';
 import { Card, Column } from '../models';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' 
 })
 export class BoardService {
 
@@ -30,7 +30,6 @@ export class BoardService {
   updateColumn(id: string, data: Column): Observable<Column> {
     return this.http.put<Column>(`${apiUrl}/columns/` + id, data);
   }
-
   //Suppression d'une colonne donnée
   deleteColumn(id: string): Observable<Column> {
     return this.http.delete<Column>(`${apiUrl}/columns/` + id);
@@ -42,22 +41,22 @@ export class BoardService {
   }
 
   // Récupération des cards
-  getCards(): Observable<Card[]> {
-    return this.http.get<Card[]>(`${apiUrl}/card`);
+  getCards(columnId: string): Observable<Card[]> {
+    return this.http.get<Card[]>(`${apiUrl}/card`).pipe(map(cards => cards.filter(c => c.columnId == columnId))) ;
   }
 
   // Récupération d'une card donnée
-  getCard(id: string): Observable<Card> {
+  getCard(id: number): Observable<Card> {
     return this.http.get<Card>(`${apiUrl}/card/` + id);
   }
 
   // Mise à jour d'une card donnée
-  updateCard(id: string, data: Card): Observable<Card> {
-    return this.http.put<Card>(`${apiUrl}/card/` + id, data);
+  updateCard(id: number, data: Card): Observable<Card> {
+    return this.http.put<Card>(`${apiUrl}/card/`+id, data);
   }
   
   //Suppression d'une cards donnée
-  deleteCard(id: string): Observable<Card> {
+  deleteCard(id: number): Observable<Card> {
     return this.http.delete<Card>(`${apiUrl}/card/` + id);
   }
 
