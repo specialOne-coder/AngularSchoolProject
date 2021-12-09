@@ -13,6 +13,8 @@ import { UpdateCardComponent } from '../update-card/update-card.component';
 export class CardComponent implements OnInit {
 
   @Output() onCardUpdated: EventEmitter<Card> = new EventEmitter();
+  @Output() onCard: EventEmitter<Card> = new EventEmitter();
+
   @Input() card!: Card;
 
   openUpdateCardDialog(id: number){
@@ -32,7 +34,7 @@ export class CardComponent implements OnInit {
 
   deleteCard(id:number){
     this.boardService.deleteCard(id).subscribe(rep=>{
-      console.log(rep);
+      this.onCard.emit(rep);
     });
   }
 

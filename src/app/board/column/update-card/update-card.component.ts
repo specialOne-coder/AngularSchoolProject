@@ -19,6 +19,7 @@ export class UpdateCardComponent implements OnInit {
   // Formulaire
   cardUpdateForm = new FormGroup({
     titreCard: new FormControl('', [Validators.required]),
+    columnId: new FormControl('',[Validators.required])
   });
 
 

@@ -7,7 +7,7 @@
 
 <div class="container mt-5">
     <div class="row">
-        <app-column [column]="columno" *ngFor="let columno of columns" (onColumnUpdated)="columnUpdated($event)" (onColumn)="delete($event)">
+        <app-column [column]="columno" *ngFor="let columno of columns" (onColumnUpdated)="columnUpdated($event)" (onColumn)="delete($event)" (onCard)="columnUpdatedWithCard($event)">
         </app-column>
     </div>
 </div>

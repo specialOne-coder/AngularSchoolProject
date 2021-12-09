@@ -11,7 +11,7 @@
                     </h2>
                     <p class="card-text">{{column.textColumn}}
                     </p>
-                    <app-card [card]="card" *ngFor="let card of cards" ></app-card> 
+                    <app-card [card]="card" *ngFor="let card of cards" (onCardUpdated)="cardUpdated($event)" (onCard)="deleteCard($event)" ></app-card> 
                 </div>
             </div>
         </div>

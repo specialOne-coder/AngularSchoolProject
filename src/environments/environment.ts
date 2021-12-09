@@ -6,7 +6,7 @@ export const environment = {
   production: false,
 };
 
-export const apiUrl = 'https://crudcrud.com/api/f3adf33e58e541f8983608bb97a87d3d';
+export const apiUrl = 'https://crudcrud.com/api/c524ecacb13f49cdbc6e9ed515d655fe';
                        
 
 /*

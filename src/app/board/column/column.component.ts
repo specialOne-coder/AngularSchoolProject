@@ -69,16 +69,19 @@ export class ColumnComponent implements OnInit {
     })
   }
 
-  // cardUpdated(card: Card) {
-  //   console.log('this.columns > ', this.card)
-  //   const cardIndex = this.cards.findIndex(c => c._id == card?._id);
-  //       console.log('columnIndex > ', cardIndex)
-  //       if (cardIndex != -1) {
-  //         this.cards[cardIndex] = card;
-  //         console.log('this.columns > ', this.cards)
-  //       }
-  // }
+  cardUpdated(card: Card) {
+    console.log('this.columns > ', this.card)
+    const cardIndex = this.cards.findIndex(c => c._id == card?._id);
+        console.log('columnIndex > ', cardIndex)
+        if (cardIndex != -1) {
+          this.cards[cardIndex] = card;
+          console.log('this.cards > ', this.cards)
+        }
+  }
 
+  deleteCard(card:Card){
+    this.onCard.emit(card);
+  }
 
 
   ngOnInit(): void {

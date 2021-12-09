@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { COLUMNS } from './@shared/mock/column.mock';
-import { Column } from './@shared/models';
+import { Card, Column } from './@shared/models';
 import { BoardService } from './@shared/services/board.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UpdateColumnComponent } from './update-column/update-column.component';
@@ -30,6 +30,10 @@ export class BoardComponent implements OnInit {
           this.columns[columnIndex] = column;
           console.log('this.columns > ', this.columns)
         }
+  }
+
+  columnUpdatedWithCard(card: Card) {
+    this.getColumns();
   }
 
   delete(column:Column){
