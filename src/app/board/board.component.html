@@ -5,9 +5,9 @@
     <a routerLink="/add-column"><button type="button" class="btn btn-light">add-column</button></a>
 </div>
 
-<div class="container mt-5">
-    <div class="row">
-        <app-column [column]="columno" *ngFor="let columno of columns" (onColumnUpdated)="columnUpdated($event)" (onColumn)="delete($event)" (onCard)="columnUpdatedWithCard($event)">
+<div class="container mt-5" cdkDropListGroup>
+    <div class="row" cdkDropList [cdkDropListData]="columns" (cdkDropListDropped)="drop($event)">
+        <app-column [column]="columno" *ngFor="let columno of columns" (onColumnUpdated)="columnUpdated($event)" (onColumn)="delete($event)" (onCard)="columnUpdatedWithCard($event)"  cdkDrag>
         </app-column>
     </div>
 </div>

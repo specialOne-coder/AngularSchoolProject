@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Card, Column } from '../@shared/models';
 import { BoardService } from '../@shared/services/board.service';
 import { UpdateColumnComponent } from '../update-column/update-column.component';
@@ -17,9 +18,21 @@ export class ColumnComponent implements OnInit {
   @Output() onCard: EventEmitter<Card> = new EventEmitter();
   @Input() column!: Column;
   cards!: Card[];
-  card!: Card;
 
   constructor(private boardService: BoardService, public dialog: MatDialog) { }
+
+  drop(event: CdkDragDrop<Card[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
+  }
 
   // Modal
   openDialog(id: string) {
@@ -35,6 +48,7 @@ export class ColumnComponent implements OnInit {
     })
   }
 
+  // Add card Dialog
   openCardDialog(id: string) {
     console.log("Mon id : " + id);
     this.boardService.getColumn(id).subscribe(response => {
@@ -57,9 +71,9 @@ export class ColumnComponent implements OnInit {
       console.log(error);
     })
   }
- 
+
   // Recuperation des cards
-  private getCards(columnId:string) {
+  private getCards(columnId: string) {
     this.boardService.getCards(columnId).subscribe(response => {
       const cardIndex = response.findIndex(r => r.columnId == this.column._id)
       console.log("Condition > " + cardIndex);
@@ -69,17 +83,17 @@ export class ColumnComponent implements OnInit {
     })
   }
 
+  // Mise à jour de la colonne après update du card;
   cardUpdated(card: Card) {
-    console.log('this.columns > ', this.card)
     const cardIndex = this.cards.findIndex(c => c._id == card?._id);
-        console.log('columnIndex > ', cardIndex)
-        if (cardIndex != -1) {
-          this.cards[cardIndex] = card;
-          console.log('this.cards > ', this.cards)
-        }
+    console.log('columnIndex > ', cardIndex)
+    if (cardIndex != -1) {
+      this.cards[cardIndex] = card;
+      console.log('this.cards > ', this.cards)
+    }
   }
 
-  deleteCard(card:Card){
+  deleteCard(card: Card) {
     this.onCard.emit(card);
   }
 

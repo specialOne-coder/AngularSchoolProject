@@ -4,6 +4,7 @@ import { Card, Column } from './@shared/models';
 import { BoardService } from './@shared/services/board.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UpdateColumnComponent } from './update-column/update-column.component';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 
 @Component({
@@ -38,6 +39,20 @@ export class BoardComponent implements OnInit {
 
   delete(column:Column){
     this.getColumns();
+  }
+
+  //Drag and drop
+  drop(event: CdkDragDrop<Column[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
   }
 
   // Recuperation des colonnes

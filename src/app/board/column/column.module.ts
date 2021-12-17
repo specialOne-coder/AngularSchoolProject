@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ColumnComponent } from '../column/column.component';
 import { CardModule } from './card/card.module';
@@ -19,6 +20,7 @@ import { UpdateCardComponent } from './update-card/update-card.component';
     CardModule,
     AddCardModule,
     ReactiveFormsModule,
+    DragDropModule
   ]
 })
 export class ColumnModule { }

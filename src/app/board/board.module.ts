@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { UpdateColumnComponent } from './update-column/update-column.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
     ReactiveFormsModule,
     HttpClientModule,
     MatDialogModule,
+    DragDropModule
   ]
 })
 export class BoardModule { }
