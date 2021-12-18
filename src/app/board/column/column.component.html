@@ -11,8 +11,9 @@
                 </h2>
                 <p class="card-text">{{column.textColumn}}
                 </p>
-                <div class="mycard" cdkDropList #id="cdkDropList" [cdkDropListData]="cards"
-                    (cdkDropListDropped)="drop($event)" [cdkDropListConnectedTo]="[column.titreColumn]">
+                
+                <div class="mycard" [id]="column._id" cdkDropList [cdkDropListData]="cards"
+                    (cdkDropListDropped)="drop($event)" [cdkDropListConnectedTo]="columnIds">
                     <app-card [card]="card" *ngFor="let card of cards" (onCardUpdated)="cardUpdated($event)"
                         (onCard)="deleteCard($event)" cdkDrag></app-card>
 

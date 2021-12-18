@@ -17,6 +17,7 @@ export class ColumnComponent implements OnInit {
   @Output() onColumn: EventEmitter<Column> = new EventEmitter();
   @Output() onCard: EventEmitter<Card> = new EventEmitter();
   @Input() column!: Column;
+  @Input() columnIds!: string[];
   cards!: Card[];
 
   constructor(private boardService: BoardService, public dialog: MatDialog) { }

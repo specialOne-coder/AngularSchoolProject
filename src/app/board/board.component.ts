@@ -14,7 +14,8 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 })
 export class BoardComponent implements OnInit {
 
-  columns!: Column[];
+  columns: Column[] = [];
+  columnIds!: string[];
   constructor(private boardService: BoardService, public dialog: MatDialog) { }
   
 
@@ -59,10 +60,15 @@ export class BoardComponent implements OnInit {
   private getColumns() {
     this.boardService.getColumns().subscribe(response => {
       this.columns = response;
+      this.generateColumnsIds();
       console.log(response);
     }, error => {
       console.log(error);
     })
+  }
+
+  private generateColumnsIds() {
+    this.columnIds = this.columns.map(c => c._id);
   }
 
 }
