@@ -1,4 +1,9 @@
 # Boardy
+J'ai cloné trello avec angular , et avec la plateforme crud crud pour eviter d'ecrire un backend 
+parce que ça semble un peu trop basique
+Ça ressemble à ça mon trello !!! hi hi 
+
+![](cap.png)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.1.
 
